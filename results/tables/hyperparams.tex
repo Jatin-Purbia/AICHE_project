@@ -1,0 +1,47 @@
+\begin{tabular}{lll}
+\toprule
+Model & Hyperparameter & Selected value \\
+\midrule
+MLR & type & ordinary least squares \\
+Poly-ridge & degree & 2 \\
+ & alpha & 1.0 \\
+MLP & layers & 3 \\
+ & width & 32 \\
+ & lr & 0.001 \\
+ & activation & tanh \\
+ & optimizer & Adam \\
+ & early\_stopping\_patience & 80 \\
+ & batch & 128 \\
+TSK / ANFIS-type & mfs\_per\_input & 2 \\
+ & rules & 8 \\
+ & mf\_type & Gaussian \\
+ & consequents & first-order \\
+ & outer\_iters & 5 \\
+ & adam\_steps & 200 \\
+ & adam\_lr & 0.02 \\
+ARX & regressors & $[x_k, x_{k-1}, u_k, u_{k-1}, I_k, I_{k-1}]$ \\
+ & ridge alpha & 1e-08 \\
+NARX-MLP & hidden\_layers & 2 \\
+ & width & 64 \\
+ & lr & 0.003 \\
+ & activation & tanh \\
+ & early\_stopping\_patience & 15 \\
+ & batch & 512 \\
+LSTM & layers & 1 \\
+ & hidden & 32 \\
+ & window & 10 \\
+ & lr & 0.003 \\
+ & grad\_clip & 1.0 \\
+ & early\_stopping\_patience & 6 \\
+ & batch & 256 \\
+PINC & ic\_mode & hard \\
+ & layers & 4 \\
+ & width & 64 \\
+ & n\_colloc & 8 \\
+ & adam\_iters & 5000 \\
+ & lbfgs\_iters & 500 \\
+ & lr & 0.001 $\to$ 0.0001 \\
+ & batch & 512 \\
+ & random\_point\_frac & 0.3 \\
+\bottomrule
+\end{tabular}

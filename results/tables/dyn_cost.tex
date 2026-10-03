@@ -1,0 +1,11 @@
+\begin{tabular}{lccc}
+\toprule
+Model & Parameters & Training time [s] & Inference / 1000 steps [s] \\
+\midrule
+RK4 simulator & -- & -- & 0.07137 \\
+ARX & 39 & 0.04157 & 0.03549 \\
+NARX-MLP & 5187 & 24.29 & 0.07395 \\
+LSTM & 5219 & 92.93 & 0.3154 \\
+PINC & 13187 & 776.4 & 0.09782 \\
+\bottomrule
+\end{tabular}

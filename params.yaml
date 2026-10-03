@@ -1,0 +1,39 @@
+# Process parameters for the PEM electrolyzer thermal model.
+# Every entry is tagged PAPER (taken from the source paper), ASSUMED (not in the paper) or CALIBRATED.
+C_th: 1.20e5     # J/K   PAPER  thermal capacity of the electrolyzer stack
+C_h: 1.46e5      # J/K   PAPER  hot-loop capacity
+C_c: 2.30e4      # J/K   PAPER  cold-loop capacity
+UA_ex: 140.0     # W/K   PAPER  heat exchanger conductance
+T_amb: 300.0     # K     PAPER  ambient temperature
+h: 3.8           # W/m^2/K PAPER convective loss coefficient
+n_cell: 26       # -     PAPER  cells in the stack
+V_th: 1.48       # V     PAPER  thermoneutral voltage
+cp: 4180.0       # J/kg/K  water heat capacity (standard value)
+V_rev: 1.23      # V     reversible voltage (Ulleberg)
+
+# --- Ulleberg-type constants: ASSUMED ---------------------------------------
+# Source: Ulleberg, O. (2003), "Modeling of advanced alkaline electrolyzers: a
+# system simulation approach", Int. J. Hydrogen Energy 28, 21-33 (HYDROGEMS
+# alkaline set, 25 bar-class cell). VALUES WERE RECALLED FROM THE LITERATURE, NOT
+# VERIFIED against the paper text (publisher pages were blocked during the search),
+# and they describe an ALKALINE cell, not a PEM cell. They are used only as a
+# smooth, physically shaped Vcell(T, I) correlation for a simulated case study.
+# Units: r in ohm*m^2, s in V, t in m^2/A (t2 in m^2*degC/A, t3 in m^2*degC^2/A).
+r1: 4.45153e-5   # ASSUMED
+r2: 6.88874e-9   # ASSUMED (per degC)
+s0: 0.33824      # ASSUMED
+s1: 0.0          # ASSUMED (the basic Ulleberg form has a constant s)
+s2: 0.0          # ASSUMED
+t1: -0.01539     # ASSUMED
+t2: 2.00181      # ASSUMED
+t3: 15.24178     # ASSUMED
+
+# --- Geometry / flow: ASSUMED, then CALIBRATED -------------------------------
+# Calibration target: at I = 40 A, u1 = 0.7, u2 = 0.5 -> T_in_ele = 315 K, dT = T_out_ele - T_in_ele = 5 K,
+# Vcell > V_th (exothermic). A and m0 were fixed at plausible values (A = 0.25 m^2 = 2500 cm^2 per cell,
+# m0 = 0.02 kg/s, i.e. 1.2 L/min at full opening); the two remaining unknowns T_inc and A_s were solved with
+# scipy.optimize.root so that the two targets are met. Nothing was tuned using any AI-model result.
+A: 0.25          # m^2   ASSUMED active cell area
+A_s: 1.48        # m^2   CALIBRATED loss area (hAs = h*A_s ~ 5.6 W/K)
+m0: 0.02         # kg/s  ASSUMED mass flow at valve opening u=1
+T_inc: 305.9     # K     CALIBRATED chiller supply temperature (a warm 33 degC coolant; cold-loop heat sink)

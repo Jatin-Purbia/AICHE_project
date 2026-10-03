@@ -1,0 +1,10 @@
+\begin{tabular}{lcccccc}
+\toprule
+Model & RMSE $T_{out,ele}$ [K] & RMSE $T_{in,ele}$ [K] & RMSE $T_{out,c}$ [K] & RMSE $V_{cell}$ [V] & mean $R^2$ & max $|e_T|$ [K] \\
+\midrule
+MLR & 1.731 & 2.191 & 2.375 & 0.03795 & 0.8482 & 11.70 \\
+Poly-ridge & 0.7670 & 0.9644 & 1.040 & 0.01432 & 0.9728 & 5.406 \\
+MLP & 0.04206 $\pm$ 0.004271 & 0.03577 $\pm$ 0.004348 & 0.04269 $\pm$ 0.004636 & 0.0004443 $\pm$ 0.0000809 & 1.000 $\pm$ 0.000009671 & 0.2631 $\pm$ 0.01768 \\
+TSK / ANFIS-type & 0.3065 & 0.3866 & 0.4170 & 0.007674 & 0.9949 & 2.030 \\
+\bottomrule
+\end{tabular}

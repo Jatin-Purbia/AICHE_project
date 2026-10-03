@@ -1,0 +1,95 @@
+# All sizes, ranges, seeds and hyperparameter grids. The `fast:` block overrides entries for smoke tests.
+seed: 0
+threads: 2                  # torch CPU threads (tiny nets are slower with more threads)
+seeds: [0, 1, 2]            # stochastic neural models
+ranges:
+  I: [5.0, 50.0]            # A
+  u1: [0.3, 1.0]
+  u2: [0.05, 1.0]
+scaling:
+  T_center: 325.0           # K
+  T_half: 25.0
+  I_center: 27.5
+  I_half: 22.5
+ss:
+  n: 2000
+  split: [0.70, 0.15, 0.15]
+  poly_alphas: [1.0e-6, 1.0e-4, 1.0e-2, 1.0]
+  mlp:
+    layers: [2, 3]
+    width: [32, 64]
+    lr: [1.0e-3, 3.0e-3]
+    max_epochs: 1000
+    patience: 80
+    batch: 128
+  tsk:
+    n_mf: 2
+    outer_iters: 5
+    adam_steps: 200
+    adam_lr: 0.02
+dyn:
+  n_traj: 30
+  T: 2000
+  dt: 1.0
+  hold: [20, 100]
+  limited_frac: 0.5         # share of trajectories with +-20 % steps around a baseline
+  limited_amp: 0.2
+  init_noise: 1.0           # K, std of noise added to the initial steady state
+  n_train: 20
+  n_val: 5
+  n_test: 5
+  noise_sigma: 0.05         # K, measurement noise of the noisy test copy
+  window: 10
+  horizons: [10, 50, 100, 500, 2000]
+  arx_alphas: [1.0e-8, 1.0e-6, 1.0e-4, 1.0e-2]
+  narx:
+    width: [32, 64]
+    lr: [1.0e-3, 3.0e-3]
+    layers: 2
+    max_epochs: 100
+    patience: 15
+    batch: 512
+  lstm:
+    hidden: [32, 64]
+    lr: [1.0e-3, 3.0e-3]
+    max_epochs: 40
+    patience: 6
+    batch: 256
+  val_rollout_len: 100
+pinc:
+  ic_mode: hard             # hard | soft
+  layers: 4
+  width: 64
+  n_colloc: 8
+  random_frac: 0.3
+  batch: 512
+  adam_iters: 5000
+  adam_lr: [1.0e-3, 1.0e-4]
+  lbfgs_iters: 500
+  lbfgs_points: 2048
+  box_T: [300.0, 350.0]
+step_response:
+  nominal: [30.0, 0.6, 0.6] # I, u1, u2
+  I_step: 45.0
+  u1_step: 0.9
+  u2_step: 0.9
+  length: 500
+timing_repeats: 5
+fast:
+  ss:
+    n: 300
+    mlp: {layers: [2], width: [32], lr: [3.0e-3], max_epochs: 150, patience: 30, batch: 64}
+    tsk: {n_mf: 2, outer_iters: 2, adam_steps: 50, adam_lr: 0.02}
+  dyn:
+    n_traj: 8
+    n_train: 5
+    n_val: 1
+    n_test: 2
+    narx: {width: [32], lr: [3.0e-3], layers: 2, max_epochs: 12, patience: 5, batch: 512}
+    lstm: {hidden: [32], lr: [3.0e-3], max_epochs: 3, patience: 3, batch: 256}
+  pinc:
+    adam_iters: 300
+    lbfgs_iters: 30
+    lbfgs_points: 1024
+  seeds: [0]
+  timing_repeats: 3
