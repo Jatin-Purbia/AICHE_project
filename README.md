@@ -22,7 +22,8 @@ python scripts/run_all.py --fast   # smoke test, a few minutes (numbers not for 
 ```
 
 Scripts can also be run one by one, in order: `scripts/01_generate_data.py`, `02_train_steady.py`,
-`03_train_dynamic.py`, `04_evaluate_and_report.py` (each accepts `--fast`).
+`03_train_dynamic.py`, `04_evaluate_and_report.py` (each accepts `--fast`). `scripts/05_make_diagrams.py` draws the three block
+diagrams (schematic, workflow, PINC); `run_all.py` does not call it.
 
 ## Configuration
 
@@ -35,6 +36,10 @@ Scripts can also be run one by one, in order: `scripts/01_generate_data.py`, `02
 - `results/results_summary.md`: plain-language summary of all numbers
 - `results/metrics.json`, `results/*.csv`, `results/models/`
 - `results/tables/*.tex`, `figures/*.png`
+
+## Report
+
+`report.tex` (repo root) reads `figures/` and `results/tables/` directly. Compile with `pdflatex report.tex` twice.
 
 ## Note (Windows)
 

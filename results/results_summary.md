@@ -44,17 +44,17 @@ Mean instantaneous pooled RMSE at t = 100, 500, 2000 s and log-log growth expone
 - PINC: 0.00568, 0.02445, 0.02694 K; p = 0.52 (roughly linear drift)
 
 ## PINC
-- Training time per seed: 776.4 s (mean over seeds; all seeds: [795, 808, 726]).
+- Training time per seed: 552.1 s (mean over seeds; all seeds: [432, 734, 490]).
 - Final training physics loss (normalised residual^2, last L-BFGS evaluation): ['2.271e-05', '2.233e-05', '1.992e-05'].
 - Mean squared normalised ODE residual of the learned map on test states: ['9.989e-06', '1.062e-05', '9.976e-06'] (RMS residual ['1.533e-04', '1.683e-04', '1.834e-04'] K/s).
 - IC mode: hard (hard = initial condition satisfied exactly).
 
 ## Cost (inference per 1000 rollout steps, median of repeats, batch of 1)
-- RK4 simulator: 0.07137 s
-- ARX: 0.03549 s (0.50 x RK4), parameters 39, training time 0.04157 s
-- NARX-MLP: 0.07395 s (1.04 x RK4), parameters 5187, training time 24.29 s
-- LSTM: 0.3154 s (4.42 x RK4), parameters 5219, training time 92.93 s
-- PINC: 0.09782 s (1.37 x RK4), parameters 13187, training time 776.4 s
+- RK4 simulator: 0.09260 s
+- ARX: 0.04543 s (0.49 x RK4), parameters 39, training time 0.05249 s
+- NARX-MLP: 0.07533 s (0.81 x RK4), parameters 5187, training time 13.62 s
+- LSTM: 0.3607 s (3.89 x RK4), parameters 5219, training time 60.20 s
+- PINC: 0.1286 s (1.39 x RK4), parameters 13187, training time 552.1 s
 
 ## Noise sensitivity (sigma_n = 0.05 K added to measured test states, models trained on clean data)
 Rollout RMSE [K] from the noisy measured initial state vs the clean truth (noise enters only through the initial state, plus the initial lag/window for the lagged models):
