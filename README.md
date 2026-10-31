@@ -25,6 +25,9 @@ Scripts can also be run one by one, in order: `scripts/01_generate_data.py`, `02
 `03_train_dynamic.py`, `04_evaluate_and_report.py` (each accepts `--fast`). `scripts/05_make_diagrams.py` draws the three block
 diagrams (schematic, workflow, PINC); `run_all.py` does not call it.
 
+Verification (re-computes key test metrics from the saved data and models, checks them against `results/metrics.json`
+and against fresh simulator solves): `python scripts/06_verify.py`.
+
 ## Configuration
 
 - `config.yaml`: sizes, ranges, seeds, hyperparameter grids (the `fast:` block overrides it for `--fast`).
